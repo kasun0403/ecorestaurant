@@ -1,0 +1,19 @@
+
+[
+ {
+ "id": "637620a4b33b89cf1999f310",
+ "name": "Main Dish",
+ "image": "https://img.icons8.com/external-basicons-solidedtgraphics/50/null/external-Dish-kitchen-basicons-solid-edtgraphics.png"
+ },
+ {
+ "id": "6376250fa64b93ff27ca604f",
+ "name": "Dessert",
+ "image": "https://img.icons8.com/external-febrian-hidayat-glyphfebrian-hidayat/64/null/external-dessert-restaurant-febrian-hidayat-glyphfebrian-hidayat.png"
+ },
+ {
+ "id": "6376250fdd24db186b80520a",
+ "name": "Beverage",
+ "image": "https://img.icons8.com/ios-filled/50/null/soda-cup.png"
+ }
+]
+
