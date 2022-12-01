@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecoresturant/constants/app_colors.dart';
 import 'package:ecoresturant/constants/images.dart';
 import 'package:flutter/material.dart';
@@ -20,10 +21,10 @@ class ItemTileWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(16.0),
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(20.0),
             boxShadow: const [
               BoxShadow(
                 color: AppColors.kwhiteColor,
@@ -36,22 +37,33 @@ class ItemTileWidget extends StatelessWidget {
           shadowColor: AppColors.kwhiteColor,
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10.0),
+            borderRadius: BorderRadius.circular(20.0),
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
-                Container(
-                  width: 100,
-                  height: 120,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    image: const DecorationImage(
-                      image: AssetImage(Designs.foodImg),
-                      fit: BoxFit.cover,
+                CachedNetworkImage(
+                  imageUrl: "$image",
+                  imageBuilder: (context, imageProvider) => Container(
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
+                  placeholder: (context, url) => const SizedBox(
+                    child: Center(
+                      heightFactor: 10,
+                      widthFactor: 10,
+                      child: CircularProgressIndicator(),
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
                 const SizedBox(width: 8),
                 Expanded(
@@ -74,18 +86,18 @@ class ItemTileWidget extends StatelessWidget {
                           ],
                         ),
                         const SizedBox(height: 3),
-                        const Text(
-                          "Chicken Club Sandwitch",
-                          style: TextStyle(
+                        Text(
+                          "$dishName",
+                          style: const TextStyle(
                               color: AppColors.kblueColor,
                               fontSize: 18,
                               fontWeight: FontWeight.w800),
                         ),
                         const SizedBox(height: 3),
-                        const Text(
+                        Text(
                           maxLines: 2,
-                          "Duis proident labore aliquip eiusmod proident exercitation nulla esse",
-                          style: TextStyle(
+                          "$discription",
+                          style: const TextStyle(
                               overflow: TextOverflow.ellipsis,
                               color: AppColors.kblueColor,
                               fontSize: 15,
@@ -94,17 +106,17 @@ class ItemTileWidget extends StatelessWidget {
                         const SizedBox(height: 3),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
+                          children: [
                             Text(
-                              "Main Dish",
-                              style: TextStyle(
+                              "$category",
+                              style: const TextStyle(
                                   color: AppColors.kblueColor,
                                   fontSize: 16,
                                   fontWeight: FontWeight.w800),
                             ),
                             Text(
-                              "Rs 900.00",
-                              style: TextStyle(
+                              "$price",
+                              style: const TextStyle(
                                   color: AppColors.kblueColor,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w800),
